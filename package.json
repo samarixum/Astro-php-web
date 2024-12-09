@@ -41,7 +41,7 @@
         "css-compile:11": "sass --style expanded --load-path=\"node_modules\" --source-map --embed-sources --no-error-css sourceCode/css/:Distribution-Build-Output/data/css/",
         "css-compile-silent:11": "sass --style expanded --load-path=\"node_modules\" --source-map --embed-sources --no-error-css sourceCode/css/:Distribution-Build-Output/data/css/ -q",
         "12 ' ' ' ' ' ' ' ' ": "",
-        " copy and .php files from sourcecode/html to build dir ": "",
+        " copy .php files from sourcecode/html to build dir ": "",
         "copy-php:12": "node ./Build-Configs/php-files.mjs"
     },
     "devDependencies": {
