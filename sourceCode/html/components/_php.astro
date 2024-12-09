@@ -1,0 +1,44 @@
+<?php
+    // Start timing
+    $startTime = microtime(true);
+
+    // Initialize the starting directory (current file's directory)
+    $currentDir = __DIR__;
+
+    // Search for the shared PHP file by traversing up the directory tree
+    $sharedPhpFile = null;
+    while ($currentDir !== false) {
+        $possiblePath = $currentDir . '/data/src/php.php';
+        if (file_exists($possiblePath)) {
+            $sharedPhpFile = $possiblePath;
+            break;
+        }
+        $currentDir = dirname($currentDir); // Move up one directory level
+    }
+
+    // End timing
+    $endTime = microtime(true);
+    $timeTaken = $endTime - $startTime;
+
+    if (!$sharedPhpFile) {
+        // Log the error for debugging
+        error_log(
+            "Critical Error: Unable to locate required PHP file 'data/src/php.php'. 
+            Searched starting from: " . __DIR__ . "."
+        );
+
+        // Set an appropriate HTTP response code
+        http_response_code(500);
+
+        // Display a secure user-friendly error page
+        echo "<h1>500 Internal Server Error</h1>";
+        echo "<p>A critical security component is missing. Please contact the site administrator.</p>";
+
+        // Exit to stop further processing
+        exit;
+    }
+
+    // Include the shared PHP file
+    require_once($sharedPhpFile);
+
+?>

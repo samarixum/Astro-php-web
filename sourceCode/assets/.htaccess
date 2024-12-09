@@ -1,0 +1,16 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}.phtml -f
+RewriteRule ^(.*)$ $1.phtml [L]
+
+<Files "*.php">
+    Require all denied
+</Files>
+
+<FilesMatch "^\.ht(access|passwd)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

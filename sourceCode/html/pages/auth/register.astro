@@ -1,0 +1,191 @@
+---
+    import Php from "../../components/_php.astro";
+    import Head from "../../components/_head.astro";
+    import Topbar from "../../components/_topbar.astro";
+    import Sidebar from "../../components/_sidebar.astro";
+    import Footer from "../../components/_footer.astro";
+---
+<!doctype html>
+<html lang="en-AU">
+
+<Php />
+
+<?php
+
+    //requireloggedin();
+
+    // Include config file
+    require_once "./config.php";
+
+    // Define variables and initialize with empty values
+    $username = $password = $confirm_password = "";
+    $username_err = $password_err = $confirm_password_err = "";
+
+    // Processing form data when form is submitted
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        // Validate username
+        if(empty(trim($_POST["username"]))){
+            $username_err = "enter a username.";
+        } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+            $username_err = "Username can only contain letters, numbers, and underscores.";
+        } else{
+            // Prepare a select statement
+            $sql = "SELECT id FROM users WHERE username = ?";
+            
+            if($stmt = mysqli_prepare($link, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "s", $param_username);
+                
+                // Set parameters
+                $param_username = trim($_POST["username"]);
+                
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    /* store result */
+                    mysqli_stmt_store_result($stmt);
+                    
+                    if(mysqli_stmt_num_rows($stmt) == 1){
+                        $username_err = "This username is already taken.";
+                    } else{
+                        $username = trim($_POST["username"]);
+                    }
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
+            }
+        }
+        
+        // Validate password
+        if(empty(trim($_POST["password"]))){
+            $password_err = "enter a password.";     
+        } elseif(strlen(trim($_POST["password"])) < 6){
+            $password_err = "Password must have atleast 6 characters.";
+        } else{
+            $password = trim($_POST["password"]);
+        }
+        
+        // Validate confirm password
+        if(empty(trim($_POST["confirm_password"]))){
+            $confirm_password_err = "confirm password.";     
+        } else{
+            $confirm_password = trim($_POST["confirm_password"]);
+            if(empty($password_err) && ($password != $confirm_password)){
+                $confirm_password_err = "Password did not match.";
+            }
+        }
+        
+        // Check input errors before inserting in database
+        if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+            
+            // Prepare an insert statement
+            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+            if($stmt = mysqli_prepare($link, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+                
+                // Set parameters
+                $param_username = $username;
+                $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+                
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Redirect to login page
+                    header("location: ./login");
+                } else{
+                    echo "Oops! Something went wrong. try again later.";
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
+            }
+        }
+        
+        // Close connection
+        mysqli_close($link);
+    }
+?>
+
+    <!-- ============================== Begin::Head ================================= -->
+    <Head />
+    </head>
+    <!-- ============================== End::Head =============================== -->
+    <!-- -->
+    <!-- ============================== Begin::Main Page =============================== -->
+    <body class="home page content-sidebar landing-page" data-elementor-device-mode="desktop">
+        <!-- ============================== Begin::site-container =============================== -->
+        <div class="site-container">
+            <Topbar />
+            <style>
+                article {
+                    display: grid;
+                    justify-content: center;
+                }
+            </style>
+            <!-- ============================== Begin::Main Body =============================== -->
+            <div class="site-inner">
+                <div class="content-sidebar-wrap">
+                    <!-- ============================== Begin::Body =============================== -->
+                    <main class="content">
+                        <article class="post-19 page type-page status-publish wpautop entry" aria-label="">
+                            <!-- ============================== Begin::Article-Header =============================== -->
+                            <header class="entry-header">
+                                <h1 class="entry-title">PlaceHolder</h1>
+                            </header>
+                            <!-- ============================== End::Article-Header =============================== -->
+                            <!-- -->
+                            <!-- ============================== Begin::Article-Content =============================== -->
+                            <div class="entry-content">
+                                <section class="elementor-section elementor-top-section elementor-element elementor-element-550ba98 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id='' data-element_type="section">
+                                    <div class="wrapper">
+                                        <h2>Register</h2>
+                                        <p>Please fill this form to create an account.</p>
+                                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                                <span class="invalid-feedback text-red"><?php echo $username_err; ?></span>
+                                            </div>    
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                                                <span class="invalid-feedback text-red"><?php echo $password_err; ?></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirm Password</label>
+                                                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                                                <span class="invalid-feedback text-red"><?php echo $confirm_password_err; ?></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" value="Submit">
+                                                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                                            </div>
+                                            <p>have an account? <a href="./login">Login here</a>.</p>
+                                        </form>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- ============================== End::Article-Content =============================== -->
+                        </article>
+                    </main>
+                    <!-- ============================== End::Body =============================== -->
+                    <!-- -->
+                    <!-- ============================== Begin::Side-Bar =============================== --> 
+                    <Sidebar />
+                    <!-- ============================== End::Side-Bar =============================== -->
+                </div>
+            </div>
+            <!-- ============================== End::Main-Body =============================== -->
+            <!-- -->
+            <!-- ============================== Begin::Footer =============================== -->
+            <Footer />
+            <!-- ============================== End::Footer =============================== -->
+        </div>
+        <!-- ============================== End::site-container =============================== -->
+    </body>
+    <!-- ============================== End::Main-Page =============================== -->
+</html>

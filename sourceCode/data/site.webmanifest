@@ -1,0 +1,20 @@
+{
+    "name": "astrophp",
+    "short_name": "php",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "/data/images/prod/IDA001-x180.webp",
+            "sizes": "180x180",
+            "type": "image/webp"
+        },
+        {
+            "src": "/data/images/prod/IDA002-x1024.webp",
+            "sizes": "1024x1024",
+            "type": "image/webp"
+        }
+    ]
+}

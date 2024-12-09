@@ -1,0 +1,135 @@
+---
+
+const title = "Astro &amp; php";
+---
+
+<head>
+    {/* Sets the title of the webpage */}
+    <title>{title}</title>
+    <meta property="og:title" content={title}>
+
+    <meta charset="UTF-8">
+
+    {/* Specifies the character encoding for the HTML document */}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    {/* Sets the viewport to make the website responsive */}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {/* Provides instructions to web crawlers about the page */}
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    {/* these tags need to be in each file for better indexing */}
+
+    {/* Provides a description of the webpage for search engines */}
+    <!-- <meta name="description" content="We have provided superior & affordable residential, commercial and industrial installation and maintenance services since 2001, with thousands of happy customers."> -->
+    {/* Provides a description of the webpage for social media sharing (Open Graph) */}
+    <!-- <meta property="og:description" content="We have provided superior & affordable residential, commercial and industrial installation and maintenance services since 2001, with thousands of happy customers."> -->
+
+    {/* Twitter Card Data */}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content="description">
+    <meta name="twitter:image" content="/data/images/prod/IDA002-x64.webp">
+
+    {/* Sets the locale for the webpage (Open Graph) */}
+    <meta property="og:locale" content="en_AU">
+
+    {/* Specifies the type of content (Open Graph) */}
+    <meta property="og:type" content="website">
+
+    {/* Sets the site name for social media sharing (Open Graph) */}
+    <meta property="og:site_name" content="<?php echo SITE_NAME; ?>">
+
+    {/* Specifies the image to be used when the webpage is shared on social media (Open Graph) */}
+    <meta property="og:image" content="/data/images/prod/IDA002-x64.webp">
+
+    {/*
+        // Open Graph meta tags are used to control how the webpage content is displayed when shared on social media platforms.
+        // They provide a standardized way to represent the content, ensuring consistency across different social media sites.
+        // Normal meta tags are primarily used for search engines and browser settings.
+    */}
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+
+    {/* favicons */}
+    <link rel="icon" href="/data/images/prod/IDA001-x180.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="/data/images/prod/IDA001-x180.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="/data/images/prod/IDA001-x32.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="/data/images/prod/IDA001-x16.webp">
+    <link rel="manifest" href="/data/site.webmanifest">
+    <link rel="mask-icon" href="/data/images/prod/IDA001-x180.webp" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    {/* csp */}
+    <?php
+        header("Cache-Control: max-age=600000, public");
+        /*header("Content-Security-Policy: 
+                default-src 'self';
+                script-src 'self' 'unsafe-inline';
+                style-src 'self' 'unsafe-inline';
+                img-src 'self';
+                connect-src 'self';
+                font-src 'self';
+                object-src 'self';
+                media-src 'self';
+                frame-src 'self';
+                child-src 'self';
+                form-action 'self';
+                frame-ancestors 'self';
+                worker-src 'self';
+                manifest-src 'self';
+                prefetch-src 'self';
+                base-uri 'self';
+                plugin-types 'self';
+                sandbox 'self';
+                report-uri /report;
+                report-to 'self';
+                navigate-to 'self';
+                require-sri-for 'self';
+                upgrade-insecure-requests;");
+        */
+    ?>
+
+    {/* global CSS */}
+    <style>
+        body {
+            transition: opacity ease-in 0.2s;
+        }
+        body[unresolved] {
+            opacity: 0;
+            display: block;
+            overflow: hidden;
+            position: relative;
+        }
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+        .shr-outline {
+            outline: none;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/data/css/platinum.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/data/css/platinumfish.css" type="text/css" media="all">
+
+    <script type="module" src="data/js/serviceWorker.js"></script>
+
+    <?php
+        include(includeDataSrc("head.php")); 
+        
+        include(includeDataSrc("description.php"));
+        
+        $canonicalUrl = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        echo "<link rel=\"canonical\" href=\"$canonicalUrl\">";
+    ?>

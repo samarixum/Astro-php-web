@@ -1,0 +1,254 @@
+---
+
+const title = "Astro &amp; php";
+---
+
+<!-- ============================== Begin::user nav bar ================================= -->
+<header class="site-header">
+    <div class="wrap">
+        <div class="title-area">
+            <p class="site-title">
+                <a href="/">{title}</a>
+            </p>
+        </div>
+        <div class="widget-area header-widget-area">
+            <?php  if (isset($_SESSION["loggedin"])) { 
+                echo '
+                <section id="nav_menu-2" class="widget widget_nav_menu">
+                    <div class="widget-wrap">
+                        <nav class="mini-nav">
+                            <ul id="menu-right-top-menu" class="menu genesis-nav-menu">
+                                <li id="menu-item-56"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-56">
+                                    <a id=qcont class="active">
+                                    ';ini_set('display_errors', 0);
+                                        echo ($_SESSION["username"]);
+                                        echo '
+                                    </a>
+                                </li>
+                                <li id="menu-item-58"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58">
+                                    <a href="/admin">
+                                        <span>admin</span>
+                                    </a>
+                                </li>
+                                <li id="menu-item-55"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55">
+                                    <a href="/auth/logout">
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                                <li id="menu-item-57"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-46 current_page_item menu-item-57">
+                                    <a href="/auth/reset-password" aria-current="page">
+                                        <span>reset-password</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+                ';
+            } ?>
+            <section id="text-2" class="widget widget_text">
+                <div class="widget-wrap">
+                    <div class="textwidget">
+                        <div class="large-phone-num text-right">
+                            <i class="icon blue-phone-lrg"></i>
+                            <a style="text-decoration:none" href="<?php echo PHONE_NUMBER_LINK; ?>"><?php echo PHONE_NUMBER; ?></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</header>
+<!-- ============================== End::user nav bar ================================= -->
+<!-- -->
+<!-- ============================== Begin::Nav-Bar ================================= -->
+<!-- ============================== Begin::Mobile-Nav-Bar ================================= -->
+<div class="nav-primary text-center" id="main-menu-control">
+    <!-- ============================== Nav Button ================================= -->
+    <button type="button" id="menu-toggle" data-toggle="collapse" data-target="#main-menu-collapse">
+        <span class="icon-bar-group">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </span>Menu
+    </button>
+    <!-- ============================== Nav Section ================================= -->
+    <ul id="menu" class="collapsed">
+        <li><a href="/">Home</a></li>
+        <li>
+            <a href="/folder/">folder</a>
+            <ul class="submenu">
+                <li>
+                    <a href="/folder/placeholder">placeholder</a>
+                </li>
+                <li>
+                    <a href="/folder/placeholder">placeholder</a>
+                </li>
+                <li>
+                    <a href="/folder/placeholder">placeholder</a>
+                </li>
+                <li>
+                    <a href="/folder/placeholder">placeholder</a>
+                </li>
+                <li>
+                    <a href="/folder/placeholder">placeholder</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/placeholder">placeholder</a>
+        </li>
+        <li>
+            <a href="/placeholder">placeholder</a>
+        </li>
+        <li>
+            <a href="/placeholder">placeholder</a>
+        </li>
+        <li>
+            <a href="/auth/login">Login</a>
+        </li>
+    </ul>
+
+</div>
+<!-- ============================== End::Mobile-Nav-Bar ================================= -->
+
+<style>
+    /* Collapsed state */
+    #menu.collapsed {
+        display: none;
+    }
+
+    /* Expanded state */
+    #menu.expanded {
+        display: block;
+    }
+</style>
+
+<script nonce="inline">
+    var menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            var menu = document.getElementById('menu');
+            if (menu) {
+                menu.classList.toggle('collapsed');
+                menu.classList.toggle('expanded');
+            }
+        });
+    }
+</script>
+
+<!-- ============================== Desktop::Nav Bar ================================= -->
+<div id="main-menu-collapse" class="collapse navbar-collapse">
+    <nav class="nav-primary" aria-label="Main">
+        <div class="wrap">
+            <ul id="menu-primary-menu" class="menu genesis-nav-menu menu-primary">
+                <!-- ============================== Home ================================= -->
+                <li id="menu-item-59"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59">
+                    <button class="sub-menu-toggle">+</button>
+                    <a href="/">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <!-- ============================== End::Home ================================= -->
+                <!-- -->
+                <!-- -->
+                <!-- -->
+                <!-- ============================== Products & Services ================================= -->
+                <li id="menu-item-59"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59">
+                    <button class="sub-menu-toggle">+</button>
+                    <a href="/folder/">
+                        <span>folder</span>
+                    </a>
+                    <!-- ============================== Products & Services Sub Menu ================================= -->
+                    <ul class="sub-menu">
+                        <li id="menu-item-463"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-463">
+                            <button class="sub-menu-toggle">+</button>
+                            <a href="/folder/#placeholder">
+                                <span>placeholder</span>
+                            </a>
+                            <!-- -->
+                            <!-- ============================== Products & Services-Residential Sub Menu ================================= -->
+                            <ul class="sub-menu">
+                                <li id="menu-item-470"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-470">
+                                    <a href="/folder/#placeholder">
+                                        <span>placeholder</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-464"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-464">
+                            <button class="sub-menu-toggle">+</button>
+                            <a href="/folder/#placeholder">
+                                <span>placeholder</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- ============================== End::Products & Services ================================= -->
+                <!-- -->
+                <!-- -->
+                <!-- -->
+                <!-- ============================== Testimonials ================================= -->
+                <li id="menu-item-59"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59">
+                    <button class="sub-menu-toggle">+</button>
+                    <a href="#placeholder">
+                        <span>placeholder</span>
+                    </a>
+                </li>
+                <!-- ============================== End::Testimonials ================================= -->
+                <!-- -->
+                <!-- -->
+                <!-- -->
+                <li id="menu-item-59"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59">
+                    <button class="sub-menu-toggle">+</button>
+                    <a href="/auth/login">
+                        <span>Login</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-463"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-463">
+                            <button class="sub-menu-toggle">+</button>
+                            <a href="/auth/register">
+                                <span>register</span>
+                            </a>
+                        </li>
+                        <li id="menu-item-464"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-464">
+                            <button class="sub-menu-toggle">+</button>
+                            <a href="#">
+                                <span>placeholder</span>
+                            </a>
+                        </li>
+                        <li id="menu-item-464"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-464">
+                            <button class="sub-menu-toggle">+</button>
+                            <a href="#">
+                                <span>placeholder</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- ============================== End::Nav-Bar ================================= -->
+
+
+<?php
+    // dynamicly include navigation bar code
+    //include(includeDataSrc('topbar.php')); 
+?>
+
+

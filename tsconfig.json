@@ -1,0 +1,15 @@
+{
+    "root": true,
+    "compilerOptions": {
+        "outDir": "Distribution-Build-Output\\data\\js",
+        "module": "esnext",
+        "strictNullChecks": false,
+        "strictPropertyInitialization": false,
+        "target": "es6",
+        "lib": ["es2018", "DOM"],
+        "skipLibCheck": true
+    },
+    "include": [
+        "sourceCode\\scripts\\typeScript\\*"
+    ]
+}

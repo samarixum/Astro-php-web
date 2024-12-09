@@ -1,0 +1,118 @@
+                <footer class="site-footer">
+                    <div class="wrap">
+                        <!--============================== Begin::Upper-Footer =================================-->
+                        <section id="text-3" class="widget widget_text">
+                            <div class="widget-wrap">
+                                <div class="textwidget">
+                                    <div class="wrap">
+                                        <div class="one-fourth first">
+                                            <ul class="no-style">
+                                                <li>
+                                                    <a href="/">Home</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/folder/">folder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="one-fourth">
+                                            <ul class="no-style">
+                                                <li>
+                                                    <a href="/folder/placeholder">placeholder</a>
+                                                </li>
+                                                <?php  if (isset($_SESSION["loggedin"])) { 
+                                                    echo '    
+                                                    <ul>
+                                                        <li>
+                                                            <a href="/user/placeholder">placeholder</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/user/placeholder">placeholder</a>
+                                                        </li>
+                                                    </ul> '; 
+                                                } ?>
+                                                <li>
+                                                    <a href="/folder/placeholder">placeholder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/folder/placeholder">placeholder</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="one-fourth">
+                                            <ul class="no-style">
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="/auth/login">Login</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="one-fourth">
+                                            <ul class="no-style">
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/#placeholder">placeholder</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--============================== End::Upper-Footer =================================-->
+                        <!-- -->
+                        <!--============================== Begin::Lower-Footer =================================-->
+                        <!-- 
+                        <section id="text-4" class="widget widget_text">
+                            <div class="widget-wrap">
+                                <div class="textwidget">
+                                    <div class="wrap bottom-footer">
+                                        <div class="one-half first">
+                                            <a style="text-decoration:none" href="<?php echo PHONE_NUMBER_LINK; ?>">
+                                                <div class="large-phone-num">
+                                                    <i class="icon-png blue-phone-lrg"></i><?php echo PHONE_NUMBER; ?>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="one-fourth footer-address">
+                                            <p class="text-blue-light">placeholder</p>
+                                            <p>placeholder</p>
+                                            <p>placeholder</p>
+                                            <br>
+                                        </div>
+                                        <div class="one-fourth copyright">
+                                            <p>Copyright © 2023</p>
+                                            <p>All Rights Reserved</p>
+                                            <p>placeholder</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        -->
+                        <!--============================== End::Lower-Footer =================================-->
+                        <!-- -->
+                        <!--============================== Begin::php-Footer =================================-->
+                        <?php
+                            include(includeDataSrc("footer.php"));
+                        ?>
+                        <!--============================== End::php-Footer =================================-->
+                    </div>
+                </footer>
